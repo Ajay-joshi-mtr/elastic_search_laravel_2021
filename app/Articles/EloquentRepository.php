@@ -2,7 +2,7 @@
 
 namespace App\Articles;
 
-use App\Article;
+use App\Models\Article;
 use Illuminate\Database\Eloquent\Collection;
 
 class EloquentRepository implements ArticlesRepository
