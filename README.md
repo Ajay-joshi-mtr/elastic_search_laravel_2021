@@ -14,7 +14,7 @@
 ### php artisan migrate
 
 ### artisan make:model -mf Article
-
+`code`
 Schema::create('articles', function (Blueprint $table) {
      $table->id();
      $table->string('title');
