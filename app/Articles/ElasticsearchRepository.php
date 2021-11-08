@@ -47,10 +47,12 @@ class ElasticsearchRepository implements ArticlesRepository
     private function buildCollection(array $items): Collection
     {
         $ids = Arr::pluck($items['hits']['hits'], '_id');
-
-        return Article::findMany($ids)
-            ->sortBy(function ($article) use ($ids) {
-                return array_search($article->getKey(), $ids);
-            });
+        $articles = Article::findMany($ids)
+        ->sortBy(function ($article) use ($ids) {
+            return array_search($article->getKey(), $ids);
+        });   
+        if($ids) 
+        $articles->took = $items['took'];          
+        return $articles;
     }
 }

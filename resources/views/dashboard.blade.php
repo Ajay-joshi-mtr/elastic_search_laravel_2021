@@ -20,9 +20,10 @@
                              />
                          </div>
                      </form>
-                     @if (request()->has('q'))
-                         <p class="text-sm">Using search: <strong>"{{ request('q') }}"</strong>. <a class="border-b border-indigo-800 text-indigo-800" href="{{ route('dashboard') }}">Clear filters</a></p>
-                     @endif
+                     @if (isset($articles->took) && request()->has('q'))
+                     <p class="text-sm">Results founds <strong>  {{ $articles->count() }} in  {{ $articles->took  ?? ''}} milliseconds.</strong> With Keywords <strong>"{{ request('q') }}" </strong> ...<a class="border-b border-indigo-800 text-indigo-800" href="{{ route('dashboard') }}">Clear filters</a></p>
+                     @endif                         
+                     
                      <div class="mt-8 space-y-8">
                          @forelse ($articles as $article)
                              <article class="space-y-1">
